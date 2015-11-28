@@ -30,3 +30,10 @@ HList allows to split compound types (represented as strings) into smaller piece
 
 `caseClassParser` is an induction step that helps to provide parser for any type - basic or compound (using HList). 
 
+### Path dependent types (`com.mwronski.pathdependenttypes`)
+
+Sample of path dependent types using movie examples where teams are built using characters from chosen movie.
+
+It shows how mixin teams, using characters from different movies, cannot be built thanks to path dependent types.
+
+More details can be found [here](http://lampwww.epfl.ch/~amin/dot/fpdt.pdf).
