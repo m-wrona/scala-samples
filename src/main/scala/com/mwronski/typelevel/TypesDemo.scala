@@ -6,9 +6,20 @@ object TypesDemo {
   def main(args: Array[String]) {
     booleanLogic()
     println("-----------")
+    nat()
   }
 
-  private def booleanLogic(): Unit = {
+  private def nat() = {
+    import com.mwronski.typelevel.Nat._
+    println("Peano numbers")
+    type _1 = Succ[_0]
+    type _2 = Succ[_1]
+
+    type ConstFalse[A] = False
+    type Is0[A <: Nat] = A#Match[ConstFalse, True, Bool]
+  }
+
+  private def booleanLogic() = {
     import com.mwronski.typelevel.Bool._
     println("Boolean logic")
     println("True && True = " + toBoolean[True && True])
