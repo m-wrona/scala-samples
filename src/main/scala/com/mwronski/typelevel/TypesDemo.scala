@@ -10,13 +10,16 @@ object TypesDemo {
   }
 
   private def nat() = {
+    import com.mwronski.typelevel.Bool._
     import com.mwronski.typelevel.Nat._
     println("Peano numbers")
-    type _1 = Succ[_0]
-    type _2 = Succ[_1]
 
-    type ConstFalse[A] = False
-    type Is0[A <: Nat] = A#Match[ConstFalse, True, Bool]
+    println("_0#Compare[_0]#eq = " + toBoolean[_0#Compare[_0]#eq])
+    println("_0#Compare[_0]#lt = " + toBoolean[_0#Compare[_0]#lt])
+    println("_3#Compare[_4]#le = " + toBoolean[_3#Compare[_4]#le])
+
+    println("Eq[_6, Mult[_2, _3]] = " + toBoolean[Eq[_6, Mult[_2, _3]]])
+    println("Eq[Sq[_3], Mult[_3, _3]] = " + toBoolean[Eq[Sq[_3], Mult[_3, _3]]])
   }
 
   private def booleanLogic() = {
