@@ -61,12 +61,6 @@ object Nat {
 
 }
 
-trait Fold[-Elem, Value] {
-
-  type Apply[E <: Elem, V <: Value] <: Value
-
-}
-
 sealed trait Nat {
 
   type Match[NonZero[N <: Nat] <: Up, IfZero <: Up, Up] <: Up
