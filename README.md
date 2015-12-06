@@ -2,6 +2,20 @@
 
 Exercises made from different areas of Scala and FP programming using monads, monoids, shapeless etc.
 
+### Type level programming (`com.mwronski.typelevel`)
+
+Type-level programming involves calculations that are done during compilation time while type-inferring/type-checking.
+
+It's demonstrated using:
+ 
+a) Church encoding for booleans with basic operations:
+
+Church encoding is a means of representing data and operators in the lambda calculus.
+
+b) Peano numbers with basic arithmetic: 
+
+Peano numbers are a simple way of representing the natural numbers using only a zero value and a successor function.
+
 ### Type classes (`com.mwronski.typeclass`)
 
 Sample parser built using type classes. Parser can convert string into chosen model.
