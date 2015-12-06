@@ -7,6 +7,22 @@ object TypesDemo {
     booleanLogic()
     println("-----------")
     nat()
+    println("-----------")
+    hlist()
+  }
+
+  private def hlist() = {
+    import com.mwronski.typelevel.HList._
+    println("HList")
+    val x = "str" :: true :: 1.0 :: HNil
+
+    // get the components by calling head/tail
+    val s: String = x.head
+    val b: Boolean = x.tail.head
+    val d: Double = x.tail.tail.head
+    //    val e = x.tail.tail.tail.head // compile error - no such element
+    println(s"${s} :: ${b} :: ${d} = ${x}")
+
   }
 
   private def nat() = {

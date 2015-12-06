@@ -12,9 +12,11 @@ a) Church encoding for booleans with basic operations:
 
 Church encoding is a means of representing data and operators in the lambda calculus.
 
-b) Peano numbers with basic arithmetic: 
+b) Peano numbers with basic arithmetic
 
 Peano numbers are a simple way of representing the natural numbers using only a zero value and a successor function.
+
+c) HList (heterogenous lists) whose length and element types are known at compile-time.
 
 ### Type classes (`com.mwronski.typeclass`)
 
