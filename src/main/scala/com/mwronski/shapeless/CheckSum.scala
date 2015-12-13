@@ -1,12 +1,16 @@
 package com.mwronski.shapeless
 
-import shapeless._, Nat._
-import shapeless.ops.nat.{Mod, Sum, Prod}
-import shapeless.ops.tuple.Length
+import shapeless.{HList, HNil, Nat, Succ}
+import shapeless.Nat._
+import shapeless.ops.hlist.Length
+import shapeless.ops.nat.Mod
+import shapeless.ops.nat.Prod
+import shapeless.ops.nat.Sum
 
 object CheckSum {
 
   def main(args: Array[String]) {
+
     // valid lists
     isValid(_3 :: _4 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: _5 :: HNil)
 
