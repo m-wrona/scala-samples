@@ -1,7 +1,5 @@
 package com.mwronski.typelevel
 
-import com.mwronski.typelevel.Fold
-
 object HList {
 
   type ::[H, T <: HList] = HCons[H, T]
@@ -32,7 +30,6 @@ object HList {
   }
 
   sealed trait HListOps[B <: HList] {
-
 
     def length: Int
 
