@@ -1,8 +1,8 @@
 package com.mwronski.shapeless
 
-import shapeless.{HList, HNil, Nat, Succ}
+import shapeless._
 import shapeless.Nat._
-import shapeless.ops.hlist.Length
+import shapeless.ops.hlist._
 import shapeless.ops.nat.Mod
 import shapeless.ops.nat.Prod
 import shapeless.ops.nat.Sum
@@ -15,8 +15,8 @@ object CheckSum {
     isValid(_3 :: _4 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: _5 :: HNil)
 
     // invalid lists - won't compile:
-    // isValid(_3 :: _1 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: _5 :: HNil) //wrong check-sum
-    // isValid(_3 :: _4 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: HNil) //wrong length
+    //     isValid(_3 :: _4 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: HNil) //wrong length
+    //     isValid(_3 :: _1 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: _5 :: HNil) //wrong check-sum
   }
 
   /**
@@ -54,6 +54,7 @@ object CheckSum {
 
   /**
     * Check that the list has nine elements and a proper checksum.
+    *
     * @param l list to be checked
     * @param len length evidence
     * @param hcs check-sum evidence
@@ -71,5 +72,6 @@ object CheckSum {
 /**
   * Evidence that the sum of each item in L multiplied by its distance from
   * the end of the list plus one modulo eleven is S.
+  * Checksum calculation: (d1+2*d2+3*d3 +..+9*d9) mod 11 = 0
   */
 sealed trait HasChecksum[L <: HList, S <: Nat]
