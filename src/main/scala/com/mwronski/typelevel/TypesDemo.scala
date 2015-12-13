@@ -23,6 +23,15 @@ object TypesDemo {
     //    val e = x.tail.tail.tail.head // compile error - no such element
     println(s"${s} :: ${b} :: ${d} = ${x}")
 
+    val x2 = "str2" :: false :: 10.0 :: HNil
+    val x3 = x ::: x2
+    println(s"x = ${x}")
+    println(s"x2 = ${x2}")
+    println(s"x ::: x2 = ${x3}")
+    println(s"x3.length = ${x3.length}")
+    println(s"x3.reverse = ${x3.reverse}")
+    val x4 = x reverse_::: x2
+    println(s"x reverse_::: x2 = ${x4}")
   }
 
   private def nat() = {
