@@ -26,14 +26,14 @@ object CheckSum {
     * @param ts tail check-sum
     * @param hl head length
     * @param hs head check-sum
-    * @param sm summary check-sum evidence
+    * @param sm summary check-sum modulo
     * @tparam H type of head
     * @tparam T type of tail
     * @tparam S type of check-sum evidence
     * @tparam TL type of tail length
     * @tparam TS type of tail check-sum
     * @tparam HL type of head length
-    * @tparam HS type of head check-sum
+    * @tparam HS type of head check-sum modulo
     * @return new check-sum
     */
   implicit def hListHasChecksum[
