@@ -2,6 +2,15 @@
 
 Exercises made from different areas of Scala and FP programming using monads, monoids, shapeless etc.
 
+### Shapeless (`com.mwronski.shapeless`)
+
+Samples of shapeless usage embracing type-level programming. 
+
+a) `CheckSum`
+
+Check-sum checks whether list has a proper length and whether its elements give proper check-sum.
+
+
 ### Type level programming (`com.mwronski.typelevel`)
 
 Type-level programming involves calculations that are done during compilation time while type-inferring/type-checking.
