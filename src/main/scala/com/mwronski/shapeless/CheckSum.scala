@@ -1,22 +1,22 @@
 package com.mwronski.shapeless
 
 import shapeless._
-import shapeless.Nat._
-import shapeless.ops.hlist._
-import shapeless.ops.nat.Mod
-import shapeless.ops.nat.Prod
-import shapeless.ops.nat.Sum
+import nat._
+import ops.nat._
+import ops.hlist._
 
 object CheckSum {
 
   def main(args: Array[String]) {
-
-    // valid lists
-    isValid(_3 :: _4 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: _5 :: HNil)
+    // valid lists:
+    println(isValid(List(3, 4, 5, 8, 8, 2, 8, 6, 5)))
+    isValid[_3 :: _4 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: _5 :: HNil]
 
     // invalid lists - won't compile:
-    //     isValid(_3 :: _4 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: HNil) //wrong length
-    //     isValid(_3 :: _1 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: _5 :: HNil) //wrong check-sum
+    println(isValid(List(3, 4, 5, 8, 8, 2, 8, 6)))
+    //    isValid[_3 :: _4 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: HNil] //wrong length
+    println(isValid(List(3, 1, 5, 8, 8, 2, 8, 6, 5)))
+    //    isValid[_3 :: _1 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: _5 :: HNil] //wrong check-sum
   }
 
   /**
@@ -54,24 +54,42 @@ object CheckSum {
 
   /**
     * Check that the list has nine elements and a proper checksum.
+    * Checksum calculation: (d1+2*d2+3*d3 +..+9*d9) mod 11 = 0
     *
-    * @param l list to be checked
     * @param len length evidence
     * @param hcs check-sum evidence
     * @tparam L type of list
     */
-  def isValid[L <: HList](l: L)(implicit
-                                len: Length.Aux[L, _9],
-                                hcs: HasChecksum[L, _0]
-  ) = {
+  def isValid[L <: HList](implicit
+                          len: Length.Aux[L, _9],
+                          hcs: HasChecksum[L, _0]
+                         ) = {
     //empty - nothing to do since compiler will do all the work
   }
 
-}
+  /**
+    * Evidence that list has proper check-sum.
+    */
+  sealed trait HasChecksum[L <: HList, S <: Nat]
 
-/**
-  * Evidence that the sum of each item in L multiplied by its distance from
-  * the end of the list plus one modulo eleven is S.
-  * Checksum calculation: (d1+2*d2+3*d3 +..+9*d9) mod 11 = 0
-  */
-sealed trait HasChecksum[L <: HList, S <: Nat]
+  /**
+    * Count check-sum directly
+    * @param l list for which check-sum should be counted
+    * @return non-negative number
+    */
+  private def checksum(l: List[Int]): Int = l
+    .reverse
+    .zipWithIndex
+    .map {
+      case (v, i) => v * (i + 1)
+    }
+    .sum % 11
+
+  /**
+    * Check directly whether list is valid
+    * @param l list which should be validate
+    * @return true if list if valid, false otherwise
+    */
+  private def isValid(l: List[Int]): Boolean = l.size == 9 && checksum(l) == 0
+
+}
