@@ -7,17 +7,10 @@ import ops.hlist._
 
 object CheckSum {
 
-  def main(args: Array[String]) {
-    // valid lists:
-    println(isValid(List(3, 4, 5, 8, 8, 2, 8, 6, 5)))
-    isValid[_3 :: _4 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: _5 :: HNil]
-
-    // invalid lists - won't compile:
-    println(isValid(List(3, 4, 5, 8, 8, 2, 8, 6)))
-    //    isValid[_3 :: _4 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: HNil] //wrong length
-    println(isValid(List(3, 1, 5, 8, 8, 2, 8, 6, 5)))
-    //    isValid[_3 :: _1 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: _5 :: HNil] //wrong check-sum
-  }
+  /**
+    * Evidence that list has proper check-sum.
+    */
+  sealed trait HasChecksum[L <: HList, S <: Nat]
 
   /**
     * Check-sum for empty list
@@ -68,11 +61,6 @@ object CheckSum {
   }
 
   /**
-    * Evidence that list has proper check-sum.
-    */
-  sealed trait HasChecksum[L <: HList, S <: Nat]
-
-  /**
     * Count check-sum directly
     * @param l list for which check-sum should be counted
     * @return non-negative number
@@ -91,5 +79,17 @@ object CheckSum {
     * @return true if list if valid, false otherwise
     */
   private def isValid(l: List[Int]): Boolean = l.size == 9 && checksum(l) == 0
+
+  def main(args: Array[String]) {
+    // valid lists:
+    println(isValid(List(3, 4, 5, 8, 8, 2, 8, 6, 5)))
+    isValid[_3 :: _4 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: _5 :: HNil]
+
+    // invalid lists - won't compile:
+    println(isValid(List(3, 4, 5, 8, 8, 2, 8, 6)))
+    //    isValid[_3 :: _4 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: HNil] //wrong length
+    println(isValid(List(3, 1, 5, 8, 8, 2, 8, 6, 5)))
+    //    isValid[_3 :: _1 :: _5 :: _8 :: _8 :: _2 :: _8 :: _6 :: _5 :: HNil] //wrong check-sum
+  }
 
 }
